@@ -1,13 +1,12 @@
 import { Outlet, NavLink } from "react-router-dom";
 import "./navigation.styles.scss";
-// import { ReactComponent as Logo } from "../../assets/007 crown.svg";
 
 export default function Navigation() {
   return (
     <>
       <nav className="navigation">
         <NavLink className="logo-container" to="/">
-          {/* <Logo /> */}
+          <img src="../../../public/vite.svg" alt="logo" />
         </NavLink>
         <div className="nav-links-container">
           <NavLink className="nav-link" to="shop">
@@ -19,6 +18,7 @@ export default function Navigation() {
         </div>
       </nav>
       <Outlet />
+      <footer>@ copyright Ayush Kumar</footer>
     </>
   );
 }
