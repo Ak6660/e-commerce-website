@@ -2,7 +2,8 @@ import "./FormInput.styles.scss";
 
 export const FormInput = ({ label, ...otherProps }) => {
   return (
-    <div>
+    <div className="group">
+      <input className="form-input" {...otherProps} />
       {label && (
         <label
           className={`${
@@ -12,7 +13,6 @@ export const FormInput = ({ label, ...otherProps }) => {
           {label}
         </label>
       )}
-      <input className="form-input" {...otherProps} />
     </div>
   );
 };
