@@ -23,10 +23,13 @@ const firebaseConfig = {
 ////////////////Firebase Auth//////////////////
 ///////////////////////////////////////////////
 const provider = new GoogleAuthProvider();
-provider.setCustomParameters({});
+provider.setCustomParameters({
+  login_hint: "user@example.com",
+});
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
 
 ///////////////////////////////////////////////
 /////////////Firestore////////////////////////
@@ -63,4 +66,11 @@ const createUsersDoc = async (userAuth) => {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
-export { app, auth, signInWithGooglePopup, db, createUsersDoc };
+export {
+  app,
+  auth,
+  signInWithGooglePopup,
+  db,
+  createUsersDoc,
+  signInWithGoogleRedirect,
+};
