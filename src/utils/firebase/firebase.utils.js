@@ -4,6 +4,7 @@ import {
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -24,7 +25,7 @@ const firebaseConfig = {
 ///////////////////////////////////////////////
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
-  login_hint: "user@example.com",
+  prompt: "select_account",
 });
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -37,30 +38,37 @@ const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
 const db = getFirestore();
 
 const createUsersDoc = async (userAuth) => {
-  const userDocRef = doc(db, "users", userAuth.uid);
+  if (!userAuth) return;
+  try {
+    const userDocRef = doc(db, "users", userAuth.uid);
 
-  const userSnapshot = await getDoc(userDocRef);
+    const userSnapshot = await getDoc(userDocRef);
+    /////////////Creating Docs in db///////////////
+    if (!userSnapshot.exists()) {
+      const { displayName, email } = userAuth;
+      const createdAt = new Date();
 
-  ///////////////////////////////////////////////
-  /////////////Creating Docs in db///////////////
-  ///////////////////////////////////////////////
-
-  if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
-    const createdAt = new Date();
-
-    try {
-      await setDoc(userDocRef, {
-        displayName,
-        email,
-        createdAt,
-      });
-    } catch (err) {
-      console.log("error creating user", err);
+      try {
+        await setDoc(userDocRef, {
+          displayName,
+          email,
+          createdAt,
+        });
+      } catch (err) {
+        console.log("error creating user", err.message);
+      }
     }
-  }
 
-  return userDocRef;
+    return userDocRef;
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
 
 ///////////////////////////////////////////////////
@@ -69,8 +77,8 @@ const createUsersDoc = async (userAuth) => {
 export {
   app,
   auth,
-  signInWithGooglePopup,
   db,
   createUsersDoc,
+  signInWithGooglePopup,
   signInWithGoogleRedirect,
 };
