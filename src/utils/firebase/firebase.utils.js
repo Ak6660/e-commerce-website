@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import {
+  signOut,
   getAuth,
+  signInWithEmailAndPassword,
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
@@ -28,9 +30,22 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth();
+
 const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
 const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
+
+export const signInUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  try {
+    return await signInWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    console.error("Please Check your credentials", err.message);
+    signOut(auth);
+  }
+};
 
 ///////////////////////////////////////////////
 /////////////Firestore////////////////////////

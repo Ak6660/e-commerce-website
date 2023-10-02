@@ -12,7 +12,7 @@ export default function Navigation() {
           <NavLink className="nav-link" to="shop">
             Shop
           </NavLink>
-          <NavLink className="nav-link" to="sign-in">
+          <NavLink className="nav-link" to="auth">
             Sign-In
           </NavLink>
         </div>
