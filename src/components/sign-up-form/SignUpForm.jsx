@@ -3,6 +3,7 @@ import {
   createAuthUserWithEmailAndPassword,
   createUsersDoc,
 } from "../../utils/firebase/firebase.utils";
+import { FormInput } from "../form-input/FormInput";
 
 const defaultFormFields = {
   displayName: "",
@@ -26,22 +27,23 @@ export const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (password !== confirmPassword) {
-      throw new Error("Password is not same");
-    }
-    if (!displayName || !email || !password || !confirmPassword) {
-      throw new Error("Please provide required details");
-    } else {
-      try {
-        const { user } = await createAuthUserWithEmailAndPassword(
-          email,
-          password
-        );
-        createUsersDoc({ ...user, displayName });
+    try {
+      if (password !== confirmPassword) {
         resetFormFields();
-      } catch (error) {
-        console.error("Error while creating user", error);
+        throw new Error("Password is not same");
       }
+      if (!displayName || !email || !password || !confirmPassword) {
+        resetFormFields();
+        throw new Error("Please provide required details");
+      }
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      createUsersDoc({ ...user, displayName });
+      resetFormFields();
+    } catch (error) {
+      console.error("Error while creating user", error);
     }
   };
 
@@ -49,8 +51,8 @@ export const SignUpForm = () => {
     <div>
       <h1>Sign up with your email and password</h1>
       <form onSubmit={handleSubmit}>
-        <label>Display name</label>
-        <input
+        <FormInput
+          label="Display name"
           type="text"
           value={displayName}
           onChange={handleChange}
@@ -58,8 +60,8 @@ export const SignUpForm = () => {
           required
         />
 
-        <label>Email</label>
-        <input
+        <FormInput
+          label="Email"
           type="email"
           value={email}
           onChange={handleChange}
@@ -67,8 +69,8 @@ export const SignUpForm = () => {
           required
         />
 
-        <label>Password</label>
-        <input
+        <FormInput
+          label="Password"
           type="password"
           value={password}
           onChange={handleChange}
@@ -76,8 +78,8 @@ export const SignUpForm = () => {
           required
         />
 
-        <label>Confirm Password</label>
-        <input
+        <FormInput
+          label="Confirm Password"
           type="password"
           value={confirmPassword}
           onChange={handleChange}
