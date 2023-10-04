@@ -43,7 +43,6 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
     return await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error("Please Check your credentials", err.message);
-    signOut(auth);
   }
 };
 

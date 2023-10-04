@@ -6,6 +6,7 @@ import {
   signInUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
+import { useUserContext } from "../../contexts/userContext";
 
 const defaultFormfields = {
   email: "",
@@ -15,6 +16,7 @@ const defaultFormfields = {
 export const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormfields);
   const { email, password } = formFields;
+  const { setCurrentUser } = useUserContext();
 
   const resetFormFields = () => {
     setFormFields(defaultFormfields);
@@ -30,25 +32,31 @@ export const SignInForm = () => {
     try {
       if (!email || !password) return;
       const { user } = await signInUserWithEmailAndPassword(email, password);
-    } catch (err) {
-      console.error(err.message);
+      setCurrentUser(user);
+    } catch (error) {
+      switch (error.code) {
+        case "auth/wrong-password":
+          alert("Incorrect Password");
+          break;
+        case "auth/user-not-found":
+          alert("No user with this Email");
+          break;
+        default:
+          console.log(error);
+      }
     } finally {
       resetFormFields();
     }
   };
 
   const logGoogleUser = async () => {
-    try {
-      const { user } = await signInWithGooglePopup();
-      await createUsersDoc(user);
-    } catch (error) {
-      console.error("Error", error.message);
-    }
+    const { user } = await signInWithGooglePopup();
+    await createUsersDoc(user);
   };
 
   return (
     <div className="sign-up-container">
-      <h2>{`I already have an account`}</h2>
+      <h2>{`Already have an account`}</h2>
       <span>Sign In with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -69,7 +77,7 @@ export const SignInForm = () => {
         />
         <div className="buttons-container ">
           <Button type="submit">Sign In </Button>
-          <Button buttontype="google" onClick={logGoogleUser}>
+          <Button type="button" buttontype="google" onClick={logGoogleUser}>
             Google Sign In
           </Button>
         </div>

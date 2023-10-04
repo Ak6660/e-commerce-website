@@ -42,10 +42,14 @@ export const SignUpForm = () => {
         email,
         password
       );
-      createUsersDoc({ ...user, displayName });
+      await createUsersDoc({ ...user, displayName });
       resetFormFields();
     } catch (error) {
-      console.error("Error while creating user", error);
+      if (error.code === "auth/email-already-in-use") {
+        alert("Cannot create user, Email is already in use");
+      } else {
+        console.error("Error while creating user", error);
+      }
     }
   };
 

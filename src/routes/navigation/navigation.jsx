@@ -1,7 +1,10 @@
 import { Outlet, NavLink } from "react-router-dom";
 import "./navigation.styles.scss";
+import { useUserContext } from "../../contexts/userContext";
 
 export default function Navigation() {
+  const { currentUser } = useUserContext();
+  console.log(currentUser);
   return (
     <>
       <nav className="navigation">
