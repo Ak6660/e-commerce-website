@@ -1,7 +1,7 @@
 import Home from "./routes/home/Home";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./routes/navigation/navigation";
-import Authentication from "./routes/authentication/authentication";
+import Authentication from "./routes/authentication/Authentication";
 
 export default function App() {
   return (
