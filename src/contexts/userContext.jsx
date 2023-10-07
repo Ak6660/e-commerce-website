@@ -5,6 +5,13 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
+const initialState = {
+  userProfile: {},
+  orders: [],
+  returns: [],
+  cart: [],
+};
+
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };

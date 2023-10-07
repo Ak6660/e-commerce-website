@@ -1,10 +1,16 @@
 import { Outlet, NavLink } from "react-router-dom";
 import "./navigation.styles.scss";
 import { useUserContext } from "../../contexts/userContext";
+import { signOutuser } from "../../utils/firebase/firebase.utils";
 
 export default function Navigation() {
-  const { currentUser } = useUserContext();
-  console.log(currentUser);
+  const { currentUser, setCurrentUser } = useUserContext();
+
+  const signOuthandler = async () => {
+    await signOutuser();
+    setCurrentUser(null);
+  };
+
   return (
     <>
       <nav className="navigation">
@@ -16,7 +22,13 @@ export default function Navigation() {
             Shop
           </NavLink>
           <NavLink className="nav-link" to="auth">
-            Sign-In
+            {currentUser ? (
+              <span className="nav-link" onClick={signOuthandler}>
+                Sign Out
+              </span>
+            ) : (
+              <span className="nav-link">Sign In</span>
+            )}
           </NavLink>
         </div>
       </nav>
