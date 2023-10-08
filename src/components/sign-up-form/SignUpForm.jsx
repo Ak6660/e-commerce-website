@@ -5,7 +5,6 @@ import {
   createUsersDoc,
 } from "../../utils/firebase/firebase.utils";
 
-import { useUserContext } from "../../contexts/userContext";
 import { FormInput } from "../form-input/FormInput";
 import { Button } from "../button/Button";
 
@@ -19,8 +18,6 @@ const defaultFormFields = {
 export const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
-
-  const { setCurrentUser } = useUserContext();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -46,7 +43,6 @@ export const SignUpForm = () => {
         email,
         password
       );
-      setCurrentUser(user);
 
       await createUsersDoc({ ...user, displayName });
       resetFormFields();
