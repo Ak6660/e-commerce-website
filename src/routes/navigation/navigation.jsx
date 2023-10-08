@@ -15,7 +15,7 @@ export default function Navigation() {
     <>
       <nav className="navigation">
         <NavLink className="logo-container" to="/">
-          <img src="/public/vite.svg" alt="logo" />
+          <img src="public/vite.svg" alt="logo" />
         </NavLink>
         <div className="nav-links-container">
           <NavLink className="nav-link" to="shop">
