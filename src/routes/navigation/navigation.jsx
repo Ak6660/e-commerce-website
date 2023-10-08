@@ -4,18 +4,13 @@ import { useUserContext } from "../../contexts/userContext";
 import { signOutuser } from "../../utils/firebase/firebase.utils";
 
 export default function Navigation() {
-  const { currentUser, setCurrentUser } = useUserContext();
-
-  const signOuthandler = async () => {
-    await signOutuser();
-    setCurrentUser(null);
-  };
+  const { currentUser } = useUserContext();
 
   return (
     <>
       <nav className="navigation">
         <NavLink className="logo-container" to="/">
-          <img src="/public/vite.svg" alt="logo" />
+          <img src="/vite.svg" alt="logo" />
         </NavLink>
         <div className="nav-links-container">
           <NavLink className="nav-link" to="shop">
@@ -23,7 +18,7 @@ export default function Navigation() {
           </NavLink>
           <NavLink className="nav-link" to="auth">
             {currentUser ? (
-              <span className="nav-link" onClick={signOuthandler}>
+              <span className="nav-link" onClick={signOutuser}>
                 Sign Out
               </span>
             ) : (
