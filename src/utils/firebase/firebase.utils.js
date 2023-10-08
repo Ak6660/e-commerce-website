@@ -3,7 +3,6 @@ import {
   signOut,
   getAuth,
   signInWithEmailAndPassword,
-  signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -29,13 +28,13 @@ const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
   prompt: "select_account",
 });
-const app = initializeApp(firebaseConfig);
 
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 const signInWithGooglePopup = () => signInWithPopup(auth, provider);
-
-const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
 
 export const signInUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
@@ -90,11 +89,4 @@ export const signOutuser = async () => signOut(auth);
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
-export {
-  app,
-  auth,
-  db,
-  createUsersDoc,
-  signInWithGooglePopup,
-  signInWithGoogleRedirect,
-};
+export { app, auth, db, createUsersDoc, signInWithGooglePopup };
