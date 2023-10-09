@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import "./Button.styles.scss";
 
 const Button_Type_Classes = {
@@ -15,4 +15,9 @@ export const Button = ({ children, buttontype, ...otherProps }) => {
       {children}
     </button>
   );
+};
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  buttontype: PropTypes.string,
 };

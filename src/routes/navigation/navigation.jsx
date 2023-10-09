@@ -2,9 +2,17 @@ import { Outlet, NavLink } from "react-router-dom";
 import "./navigation.styles.scss";
 import { useUserContext } from "../../contexts/userContext";
 import { signOutuser } from "../../utils/firebase/firebase.utils";
+import CartIcon from "../../components/cart-icon/CartIcon";
+import CartDropdown from "../../components/cart-dropdown/CartDropdown";
+import { useCartContext } from "../../contexts/CartDropdownContext";
 
 export default function Navigation() {
   const { currentUser } = useUserContext();
+  const { isDropdownOpen, setIsDropdownOpen } = useCartContext();
+
+  const handleCartDropdownClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   return (
     <>
@@ -25,8 +33,10 @@ export default function Navigation() {
               <span className="nav-link">Sign In</span>
             )}
           </NavLink>
+          <CartIcon onClick={handleCartDropdownClick} />
         </div>
       </nav>
+      {isDropdownOpen && <CartDropdown />}
       <Outlet />
       <footer>@ copyright Ayush Kumar</footer>
     </>
