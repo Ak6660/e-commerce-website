@@ -13,7 +13,9 @@ const CategoryItem = ({ category }) => {
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting) {
-          entry.target.style.backgroundImage = `url(${imageUrl})`;
+          setTimeout(() => {
+            entry.target.style.backgroundImage = `url(${imageUrl})`;
+          }, 1000);
         }
       },
 
