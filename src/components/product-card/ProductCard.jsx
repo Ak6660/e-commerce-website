@@ -36,6 +36,8 @@ const ProductCard = ({ product }) => {
     };
   }, [imageRef, imageUrl]);
 
+  const handleAddToCart = () => addToCart(product);
+
   return (
     <div className="product-card-container">
       <img ref={imageRef} alt={name} />
@@ -47,7 +49,7 @@ const ProductCard = ({ product }) => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vero
         aperiam eum
       </div>
-      <Button buttontype="inverted" onClick={() => addToCart(product)}>
+      <Button buttontype="inverted" onClick={handleAddToCart}>
         Add to Cart
       </Button>
     </div>

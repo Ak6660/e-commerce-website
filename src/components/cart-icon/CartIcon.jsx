@@ -4,6 +4,7 @@ import { useCartContext } from "../../contexts/CartDropdownContext";
 
 const CartIcon = ({ onClick }) => {
   const { cartItems } = useCartContext();
+  const totalQuantity = cartItems.reduce((acc, cur) => acc + cur.quantity, 0);
   return (
     <div className="cart-icon-container" onClick={onClick}>
       <img
@@ -11,7 +12,7 @@ const CartIcon = ({ onClick }) => {
         className="shopping-icon"
         alt="cart-icon"
       />
-      <span className="item-count">{cartItems.length}</span>
+      <span className="item-count">{totalQuantity}</span>
     </div>
   );
 };
