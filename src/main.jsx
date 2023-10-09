@@ -10,6 +10,7 @@ import ProductProvider from "./contexts/ProductContext";
 import CartDropdownProvider from "./contexts/CartDropdownContext";
 
 import App from "./App";
+import ErrorBoundary from "./components/Error/ErrorBoundary";
 
 root.render(
   <StrictMode>
@@ -17,7 +18,9 @@ root.render(
       <UserProvider>
         <ProductProvider>
           <CartDropdownProvider>
-            <App />
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
           </CartDropdownProvider>
         </ProductProvider>
       </UserProvider>

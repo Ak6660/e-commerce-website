@@ -4,6 +4,8 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  background-color: grey;
+  margin-top: 0px;
 
   .logo-container {
     height: 100%;
@@ -19,8 +21,28 @@
     justify-content: flex-end;
 
     .nav-link {
-      padding: 10px 15px;
+      padding: 5px 15px;
       cursor: pointer;
+      background-color: grey;
+      color: aliceblue;
+    }
+    .active {
+      padding: 5px 15px;
+      background-color: aliceblue;
+      color: gray;
+      border-radius: 5px;
     }
   }
+}
+.page-content {
+  padding: 10px 40px;
+}
+
+.footer {
+  background-color: grey;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 0px;
+  padding: 10px;
 }

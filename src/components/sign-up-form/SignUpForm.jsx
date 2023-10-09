@@ -59,7 +59,7 @@ export const SignUpForm = () => {
     <div className="sign-up-container">
       <h2>{`Don't have an account?`}</h2>
       <span>Sign up with your email and password</span>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="on">
         <FormInput
           label="Display name"
           type="text"

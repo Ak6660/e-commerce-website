@@ -1,4 +1,5 @@
 import "./FormInput.styles.scss";
+import PropTypes from "prop-types";
 
 export const FormInput = ({ label, ...otherProps }) => {
   return (
@@ -15,4 +16,7 @@ export const FormInput = ({ label, ...otherProps }) => {
       )}
     </div>
   );
+};
+FormInput.propTypes = {
+  label: PropTypes.string.isRequired,
 };

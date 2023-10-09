@@ -26,19 +26,19 @@ export default function Navigation() {
           </NavLink>
           <NavLink className="nav-link" to="auth">
             {currentUser ? (
-              <span className="nav-link" onClick={signOutuser}>
-                Sign Out
-              </span>
+              <span onClick={signOutuser}>Sign Out</span>
             ) : (
-              <span className="nav-link">Sign In</span>
+              <span>Sign In</span>
             )}
           </NavLink>
           <CartIcon onClick={handleCartDropdownClick} />
         </div>
       </nav>
       {isDropdownOpen && <CartDropdown />}
-      <Outlet />
-      <footer>@ copyright Ayush Kumar</footer>
+      <div className="page-content">
+        <Outlet />
+      </div>
+      <footer className="footer">@ copyright Ayush Kumar</footer>
     </>
   );
 }
