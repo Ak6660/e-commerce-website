@@ -19,6 +19,7 @@ export default function Navigation() {
       <nav className="navigation">
         <NavLink className="logo-container" to="/">
           <img src="/vite.svg" alt="logo" />
+          <span>Mystery Clothing</span>
         </NavLink>
         <div className="nav-links-container">
           <NavLink className="nav-link" to="shop">
