@@ -24,9 +24,7 @@ const CartProvider = ({ children }) => {
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
-export const useCartContext = () => {
-  return useContext(CartContext);
-};
+export const useCartContext = () => useContext(CartContext);
 
 CartProvider.propTypes = {
   children: PropTypes.node.isRequired,

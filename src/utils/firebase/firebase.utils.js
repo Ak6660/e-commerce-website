@@ -87,7 +87,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signOutuser = async () => signOut(auth);
 
-export const onAuthStateChangedListener = (callback) =>
+export const onAuthStateChangeListener = (callback) =>
   onAuthStateChanged(auth, callback);
 
 ///////////////////////////////////////////////////

@@ -16,8 +16,6 @@ ProductProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export const useProducts = () => {
-  return useContext(ProductContext);
-};
+export const useProducts = () => useContext(ProductContext);
 
 export default ProductProvider;
