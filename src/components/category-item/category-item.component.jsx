@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import "./category-item.styles.scss";
 
 const CategoryItem = ({ category }) => {
@@ -43,6 +44,10 @@ const CategoryItem = ({ category }) => {
       </div>
     </div>
   );
+};
+
+CategoryItem.propTypes = {
+  category: PropTypes.object,
 };
 
 export default CategoryItem;
