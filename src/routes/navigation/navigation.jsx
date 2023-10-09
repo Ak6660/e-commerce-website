@@ -1,17 +1,24 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import "./navigation.styles.scss";
 import { useUserContext } from "../../contexts/userContext";
 import { signOutuser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/CartIcon";
 import CartDropdown from "../../components/cart-dropdown/CartDropdown";
 import { useCartContext } from "../../contexts/CartDropdownContext";
+import { normalToKebab } from "../../utils/helpers/string.helpers";
 
 export default function Navigation() {
   const { currentUser } = useUserContext();
   const { isDropdownOpen, setIsDropdownOpen } = useCartContext();
+  const navigate = useNavigate();
 
   const handleCartDropdownClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const navigateToUserPropfile = () => {
+    const url = normalToKebab(currentUser.displayName);
+    navigate(`users/${url}`);
   };
 
   return (
@@ -32,6 +39,11 @@ export default function Navigation() {
               <span>Sign In</span>
             )}
           </NavLink>
+          {currentUser && (
+            <div onClick={navigateToUserPropfile} className="nav-link">
+              Profile
+            </div>
+          )}
           <CartIcon onClick={handleCartDropdownClick} />
         </div>
       </nav>

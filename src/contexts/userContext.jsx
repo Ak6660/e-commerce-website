@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   createUsersDoc,
-  onAuthStateChangedListener,
+  onAuthStateChangeListener,
 } from "../utils/firebase/firebase.utils";
 
 export const UserContext = createContext({
@@ -10,19 +10,19 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
-// const initialState = {
-//   userProfile: {},
-//   orders: [],
-//   returns: [],
-//   cart: [],
-// };
+const initialState = {
+  userProfile: {},
+  orders: [],
+  returns: [],
+  cart: [],
+};
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
+    const unsubscribe = onAuthStateChangeListener((user) => {
       if (user) {
         createUsersDoc(user);
       }
@@ -39,6 +39,4 @@ UserProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export const useUserContext = () => {
-  return useContext(UserContext);
-};
+export const useUserContext = () => useContext(UserContext);
