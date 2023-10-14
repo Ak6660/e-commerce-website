@@ -21,7 +21,10 @@ const CartDropdown = () => {
 
   if (!cartItems.length) {
     return (
-      <div className="cart-dropdown-container">
+      <div
+        className="cart-dropdown-container"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="cart-items">
           <h3>Cart Empty</h3>
         </div>
@@ -30,7 +33,10 @@ const CartDropdown = () => {
     );
   }
   return (
-    <div className="cart-dropdown-container">
+    <div
+      className="cart-dropdown-container"
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className="cart-items">
         {cartItems.map((cartItem) => (
           <CartItem key={cartItem.id} cartItem={cartItem} />

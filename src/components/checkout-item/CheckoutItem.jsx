@@ -28,7 +28,7 @@ const CheckoutItem = ({ product }) => {
             </button>
           </span>
           <h4>Total:</h4>
-          <span>{price * quantity}</span>
+          <span>${price * quantity}</span>
         </div>
       </div>
     </div>

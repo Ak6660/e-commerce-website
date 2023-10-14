@@ -21,7 +21,7 @@ const CartProvider = ({ children }) => {
     // Getting Data from Local Storage
     if (!currentUser) {
       const cartItemsFromLocal = window.localStorage.getItem("cart");
-      if (cartItemsFromLocal?.length) {
+      if (cartItemsFromLocal && cartItemsFromLocal.length) {
         const itemsToAdd = JSON.parse(cartItemsFromLocal);
         setcartItems((s) => [...s, ...itemsToAdd]);
       } else setcartItems([]);
@@ -30,11 +30,13 @@ const CartProvider = ({ children }) => {
 
   useEffect(() => {
     // Saaving Data in Local Storage
+
     window.localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
   const addToCart = (product) => {
     const newItem = addQuantity(cartItems, product.id);
+
     if (newItem) {
       return setcartItems((curItems) =>
         curItems.map((item) => (item.id === product.id ? newItem : item))
