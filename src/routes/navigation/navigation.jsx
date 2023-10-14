@@ -12,8 +12,9 @@ export default function Navigation() {
   const { isDropdownOpen, setIsDropdownOpen } = useCartContext();
   const navigate = useNavigate();
 
-  const handleCartDropdownClick = () => {
+  const handleCartDropdownClick = (e) => {
     setIsDropdownOpen(!isDropdownOpen);
+    e.stopPropagation();
   };
 
   const navigateToUserPropfile = () => {
@@ -21,8 +22,17 @@ export default function Navigation() {
     navigate(`users/${url}`);
   };
 
+  const handleoutClick = (e) => {
+    if (
+      e.target.className !== "cart-dropdown-container" ||
+      e.target.className !== "cart-icon-container"
+    ) {
+      setIsDropdownOpen(false);
+    }
+  };
+
   return (
-    <>
+    <div onClick={handleoutClick}>
       <nav className="navigation">
         <NavLink className="logo-container" to="/">
           <img src="/vite.svg" alt="logo" />
@@ -52,6 +62,6 @@ export default function Navigation() {
         <Outlet />
       </div>
       <footer className="footer">@ copyright Ayush Kumar</footer>
-    </>
+    </div>
   );
 }

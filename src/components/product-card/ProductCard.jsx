@@ -7,8 +7,9 @@ import { useCartContext } from "../../contexts/CartDropdownContext";
 
 const ProductCard = ({ product }) => {
   const { name, imageUrl, price } = product;
-  const { addToCart } = useCartContext();
+  const { addToCart, cartItems } = useCartContext();
   const imageRef = useRef();
+  const inCart = cartItems.find((item) => item.id == product.id);
 
   useEffect(() => {
     const imgEl = imageRef.current;
@@ -49,9 +50,13 @@ const ProductCard = ({ product }) => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vero
         aperiam eum
       </div>
-      <Button buttontype="inverted" onClick={handleAddToCart}>
-        Add to Cart
-      </Button>
+      {inCart ? (
+        <Button disabled={true}>Added</Button>
+      ) : (
+        <Button buttontype="inverted" onClick={handleAddToCart}>
+          Add to Cart
+        </Button>
+      )}
     </div>
   );
 };
