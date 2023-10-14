@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { capitalize } from "../../utils/helpers/string.helpers";
+import { useUserContext } from "../../contexts/userContext";
 
-const UserProfile = (props) => {
+const UserProfile = () => {
   const { userName } = useParams();
+  const { currentUser } = useUserContext();
+  console.log("UserInfo", currentUser);
   return <div>{capitalize(userName)}</div>;
 };
-
-UserProfile.propTypes = {};
 
 export default UserProfile;

@@ -85,7 +85,10 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const signOutuser = async () => signOut(auth);
+export const signOutuser = async () => {
+  window.localStorage.clear();
+  return signOut(auth);
+};
 
 export const onAuthStateChangeListener = (callback) =>
   onAuthStateChanged(auth, callback);
