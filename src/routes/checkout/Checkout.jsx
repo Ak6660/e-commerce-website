@@ -23,6 +23,7 @@ const Checkout = () => {
 
   return (
     <div className="checkout-items-container">
+      <h3>Products Details</h3>
       {cartItems.map((item) => (
         <CheckoutItem key={item.id} product={item} />
       ))}
