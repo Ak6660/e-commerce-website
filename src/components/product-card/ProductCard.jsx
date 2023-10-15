@@ -42,7 +42,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card-container">
       <img ref={imageRef} alt={name} />
-      <div className="footer">
+      <div className="footer-card ">
         <span className="name">{name}</span>
         <span className="price">${price}</span>
       </div>

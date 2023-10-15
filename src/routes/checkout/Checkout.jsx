@@ -6,7 +6,6 @@ import "./Checkout.scss";
 
 const Checkout = () => {
   const { cartItems } = useCartContext();
-  // const {name,price,quantity,id,imageUrl} = cartItems
   const navigate = useNavigate();
 
   const handleGotoShop = () => {
@@ -23,7 +22,7 @@ const Checkout = () => {
   }
 
   return (
-    <div>
+    <div className="checkout-items-container">
       {cartItems.map((item) => (
         <CheckoutItem key={item.id} product={item} />
       ))}
