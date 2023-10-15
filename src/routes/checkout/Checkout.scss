@@ -10,3 +10,13 @@
     text-shadow: 0px 2px 2px grey;
   }
 }
+.checkout-items-container {
+  padding: 30px 0px;
+  background-color: rgb(238, 240, 240);
+  border-radius: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
