@@ -9,7 +9,16 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 //////////////////////////////////////////////////
 //////////////Firebase Config/////////////////////
@@ -30,8 +39,8 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 
-//////////////////////////////////////////////
-//////////////////////////////////////////////
+////////////////////////////////////////////////
+///////////Initiating Firebase App//////////////
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
@@ -46,10 +55,41 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
   }
 };
 
-///////////////////////////////////////////////
-/////////////Firestore////////////////////////
-//////////////////////////////////////////////
+///////////////////////////////////////////////////////
+//////////////////////Firestore////////////////////////
+///////////////////////////////////////////////////////
 const db = getFirestore();
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  productsToAdd,
+  field = "title"
+) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  productsToAdd.forEach((product) => {
+    const docRef = doc(collectionRef, product[field].toLowerCase());
+    console.log(product);
+    batch.set(docRef, product);
+  });
+
+  await batch.commit();
+  console.log("done");
+};
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const que = query(collectionRef);
+
+  const querySnapshot = await getDocs(que);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  return categoryMap;
+};
 
 const createUsersDoc = async (userAuth) => {
   if (!userAuth) return;
@@ -79,6 +119,9 @@ const createUsersDoc = async (userAuth) => {
   }
 };
 
+////////////////////////////////////////////////////////
+///////////////////////Authentication///////////////////
+////////////////////////////////////////////////////////
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 

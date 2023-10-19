@@ -22,17 +22,8 @@ export default function Navigation() {
     navigate(`users/${url}`);
   };
 
-  const handleoutClick = (e) => {
-    if (
-      e.target.className !== "cart-dropdown-container" ||
-      e.target.className !== "cart-icon-container"
-    ) {
-      setIsDropdownOpen(false);
-    }
-  };
-
   return (
-    <div onClick={handleoutClick}>
+    <div>
       <nav className="navigation">
         <NavLink className="logo-container" to="/">
           <img src="/vite.svg" alt="logo" />

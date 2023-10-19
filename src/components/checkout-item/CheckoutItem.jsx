@@ -4,12 +4,12 @@ import { useCartContext } from "../../contexts/CartDropdownContext";
 
 const CheckoutItem = ({ product }) => {
   const { name, price, imageUrl, quantity } = product;
-  const { incrementQuantity, decrementQuantity } = useCartContext();
+  const { incrementQuantity, decrementQuantity, removeItem } = useCartContext();
   return (
     <div className="checkout-item-container">
       <img className="checkout-item-image" src={imageUrl} alt={name} />
       <div className="checkout-item-details">
-        <h2>{name}</h2>
+        <h3>{name}</h3>
         <div className="checkout-item-price">
           <span>${price}</span> x
           <span>
@@ -30,6 +30,9 @@ const CheckoutItem = ({ product }) => {
           <h4>Total:</h4>
           <span>${price * quantity}</span>
         </div>
+      </div>
+      <div onClick={() => removeItem(product)} className="remove-btn">
+        &#10005;
       </div>
     </div>
   );

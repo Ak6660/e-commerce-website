@@ -1,4 +1,5 @@
 .checkout-item-container {
+  background-color: white;
   display: flex;
   width: 75vw;
   margin: 20px;
@@ -18,7 +19,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 75%;
+    h3 {
+      margin: 15px;
+      font-weight: 900;
+      font-size: larger;
+    }
 
     .checkout-item-price {
       font-size: 25px;
@@ -46,4 +52,17 @@
   background-color: rgb(209, 201, 201);
   border-radius: 2px;
   font-size: 10px;
+}
+.remove-btn {
+  margin: 30px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
+  font-size: larger;
+  font-weight: 900;
+}
+.remove-btn:hover {
+  background-color: rgba(180, 180, 180, 0.473);
 }

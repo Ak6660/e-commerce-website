@@ -69,6 +69,12 @@ const CartProvider = ({ children }) => {
         );
   };
 
+  const removeItem = (product) => {
+    setcartItems((curItems) =>
+      curItems.filter((item) => item.id !== product.id)
+    );
+  };
+
   const value = {
     isDropdownOpen,
     setIsDropdownOpen,
@@ -76,6 +82,7 @@ const CartProvider = ({ children }) => {
     addToCart,
     decrementQuantity,
     incrementQuantity,
+    removeItem,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
