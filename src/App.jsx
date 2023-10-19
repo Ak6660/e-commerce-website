@@ -1,10 +1,12 @@
 import Home from "./routes/home/Home";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navigation from "./routes/navigation/navigation";
 import Authentication from "./routes/authentication/Authentication";
 import Shop from "./routes/shop/Shop";
 import Checkout from "./routes/checkout/Checkout";
 import UserProfile from "./routes/user-profile/UserProfile";
+import AdminDashBoard from "./routes/admin/AdminDashBoard";
+import AdminPanel from "./routes/admin-panel/AdminPanel";
 
 export default function App() {
   return (
@@ -18,6 +20,9 @@ export default function App() {
           <Route path=":userName" element={<UserProfile />} />
         </Route>
         <Route path="*" element={<h1>Page Not Found</h1>} />
+        <Route path="admin" element={<AdminDashBoard />}>
+          <Route path=":admin-panel" element={<AdminPanel />} />
+        </Route>
       </Route>
     </Routes>
   );

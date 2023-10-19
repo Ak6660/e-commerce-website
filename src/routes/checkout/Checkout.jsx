@@ -7,6 +7,10 @@ import "./Checkout.scss";
 const Checkout = () => {
   const { cartItems } = useCartContext();
   const navigate = useNavigate();
+  const total = cartItems.reduce(
+    (acc, cur) => acc + cur.quantity * cur.price,
+    0
+  );
 
   const handleGotoShop = () => {
     navigate("/shop");
@@ -23,10 +27,14 @@ const Checkout = () => {
 
   return (
     <div className="checkout-items-container">
-      <h3>Products Details</h3>
+      <h2>Products Details</h2>
       {cartItems.map((item) => (
         <CheckoutItem key={item.id} product={item} />
       ))}
+      <div>
+        <h3 className="cart-total">Total:</h3>
+        <span className="cart-total-price">${total}</span>
+      </div>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
       },
       {
         root: null,
-        threshold: 0,
+        threshold: 0.2,
       }
     );
 

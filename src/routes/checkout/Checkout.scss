@@ -19,4 +19,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  h2 {
+    line-height: 30px;
+    font-weight: bold;
+  }
+}
+.cart-total {
+  display: inline-block;
+}
+.cart-total-price {
+  font-size: large;
+  font-style: italic;
 }
