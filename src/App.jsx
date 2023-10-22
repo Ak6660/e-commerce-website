@@ -4,7 +4,6 @@ import Navigation from "./routes/navigation/navigation";
 import Authentication from "./routes/authentication/Authentication";
 import Shop from "./routes/shop/Shop";
 import Checkout from "./routes/checkout/Checkout";
-import UserProfile from "./routes/user-profile/UserProfile";
 import AdminDashBoard from "./routes/admin/AdminDashBoard";
 import AdminPanel from "./routes/admin-panel/AdminPanel";
 
