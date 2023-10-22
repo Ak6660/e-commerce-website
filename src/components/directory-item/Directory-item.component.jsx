@@ -1,10 +1,13 @@
 import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import "./category-item.styles.scss";
+import "./Directory-item.styles.scss";
+import { useNavigate } from "react-router-dom";
 
-const CategoryItem = ({ category }) => {
+const DirectoryItem = ({ category }) => {
   const { title, imageUrl } = category;
+  const navigate = useNavigate();
   const imageRef = useRef();
+
   useEffect(() => {
     const imageEl = imageRef.current;
     /////////////////////////////////////////////
@@ -34,9 +37,12 @@ const CategoryItem = ({ category }) => {
   }, [imageRef, imageUrl]);
 
   return (
-    <div className="category-container">
+    <div className="directory-item-container">
       <div className="background-image" ref={imageRef} />
-      <div className="category-body-container">
+      <div
+        onClick={() => navigate(`shop/${title.toLowerCase()}`)}
+        className="body"
+      >
         <h2>{title}</h2>
         <p>Shop Now</p>
       </div>
@@ -44,8 +50,8 @@ const CategoryItem = ({ category }) => {
   );
 };
 
-CategoryItem.propTypes = {
+DirectoryItem.propTypes = {
   category: PropTypes.object,
 };
 
-export default CategoryItem;
+export default DirectoryItem;

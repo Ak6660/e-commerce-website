@@ -17,7 +17,7 @@ export default function Navigation() {
     e.stopPropagation();
   };
 
-  const navigateToUserPropfile = () => {
+  const navigateToUserProfile = () => {
     const url = normalToKebab(currentUser.displayName);
     navigate(`users/${url}`);
   };
@@ -40,11 +40,6 @@ export default function Navigation() {
               <span>Sign In</span>
             )}
           </NavLink>
-          {currentUser && (
-            <div onClick={navigateToUserPropfile} className="nav-link">
-              Profile
-            </div>
-          )}
           <CartIcon onClick={handleCartDropdownClick} />
         </div>
       </nav>

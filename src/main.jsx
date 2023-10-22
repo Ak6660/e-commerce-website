@@ -6,7 +6,7 @@ import "./styles.scss";
 
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./contexts/userContext";
-import ProductProvider from "./contexts/ProductContext";
+import CategoriesProvider from "./contexts/CategoriesContext";
 import CartDropdownProvider from "./contexts/CartDropdownContext";
 
 import App from "./App";
@@ -16,13 +16,13 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <ProductProvider>
+        <CategoriesProvider>
           <CartDropdownProvider>
             <ErrorBoundary>
               <App />
             </ErrorBoundary>
           </CartDropdownProvider>
-        </ProductProvider>
+        </CategoriesProvider>
       </UserProvider>
     </BrowserRouter>
   </StrictMode>

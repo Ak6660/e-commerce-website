@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useCartContext } from "../../contexts/CartDropdownContext";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product = {} }) => {
   const { name, imageUrl, price } = product;
   const { addToCart, cartItems } = useCartContext();
   const imageRef = useRef();

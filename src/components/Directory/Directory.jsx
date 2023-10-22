@@ -1,5 +1,5 @@
-import CategoryItem from "../category-item/category-item.component";
-import "./categories-menu.scss";
+import DirectoryItem from "../directory-item/Directory-item.component";
+import "./Directory.scss";
 
 const categories = [
   {
@@ -29,13 +29,13 @@ const categories = [
   },
 ];
 
-const CategoriesMenu = () => {
+const Directory = () => {
   return (
-    <div className="categories-container">
+    <div className="directory-container">
       {categories.map((category) => (
-        <CategoryItem key={category.id} category={category} />
+        <DirectoryItem key={category.id} category={category} />
       ))}
     </div>
   );
 };
-export default CategoriesMenu;
+export default Directory;

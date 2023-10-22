@@ -1,10 +1,10 @@
 import AboutUs from "../../components/about-us/AboutUs";
-import CategoriesMenu from "../../components/categories-menu/categories-menu";
+import Directory from "../../components/Directory/Directory";
 
 export default function Home() {
   return (
     <div>
-      <CategoriesMenu />;
+      <Directory />;
       <AboutUs />
     </div>
   );
