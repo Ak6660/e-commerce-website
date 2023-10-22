@@ -4,7 +4,7 @@ import Directory from "../../components/Directory/Directory";
 export default function Home() {
   return (
     <div>
-      <Directory />;
+      <Directory />
       <AboutUs />
     </div>
   );
