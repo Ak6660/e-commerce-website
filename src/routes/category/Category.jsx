@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import "./Category.scss";
 import { useParams } from "react-router-dom";
 import { useCategories } from "../../contexts/CategoriesContext";
 import ProductCard from "../../components/product-card/ProductCard";
 
-function Category({ props }) {
+function Category() {
   const { category } = useParams();
   const { categories } = useCategories();
   const [products, setProducts] = useState(categories[category]);
@@ -23,7 +22,5 @@ function Category({ props }) {
     </div>
   );
 }
-
-Category.propTypes = {};
 
 export default Category;
