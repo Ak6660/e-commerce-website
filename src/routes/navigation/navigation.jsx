@@ -3,8 +3,13 @@ import "./navigation.styles.scss";
 import { useUserContext } from "../../contexts/userContext";
 import { signOutuser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/CartIcon";
-import CartDropdown from "../../components/cart-dropdown/CartDropdown";
+// import CartDropdown from "../../components/cart-dropdown/CartDropdown";
 import { useCartContext } from "../../contexts/CartDropdownContext";
+import { lazy } from "react";
+import { Suspense } from "react";
+const CartDropdown = lazy(() =>
+  import("../../components/cart-dropdown/CartDropdown")
+);
 
 export default function Navigation() {
   const { currentUser } = useUserContext();
@@ -36,7 +41,11 @@ export default function Navigation() {
           <CartIcon onClick={handleCartDropdownClick} />
         </div>
       </nav>
-      {isDropdownOpen && <CartDropdown />}
+      {isDropdownOpen && (
+        <Suspense fallback={<h1>Loading....</h1>}>
+          <CartDropdown />
+        </Suspense>
+      )}
       <div className="page-content">
         <Outlet />
       </div>
