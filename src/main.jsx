@@ -2,7 +2,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
-import "./styles.scss";
+// import "./styles.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./contexts/userContext";

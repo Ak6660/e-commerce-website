@@ -1,9 +1,7 @@
 import { Outlet, NavLink } from "react-router-dom";
-import "./navigation.styles.scss";
 import { useUserContext } from "../../contexts/userContext";
 import { signOutuser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/CartIcon";
-// import CartDropdown from "../../components/cart-dropdown/CartDropdown";
 import { useCartContext } from "../../contexts/CartDropdownContext";
 import { lazy } from "react";
 import { Suspense } from "react";
@@ -22,16 +20,16 @@ export default function Navigation() {
 
   return (
     <div>
-      <nav className="navigation">
-        <NavLink className="logo-container" to="/">
+      <nav className="jumbotron d-flex align-items-center justify-content-between bg-secondary text-white p-0">
+        <NavLink className="ml-3 text-white" to="/">
           <img src="/vite.svg" alt="logo" />
           <span>Mystery Clothing</span>
         </NavLink>
-        <div className="nav-links-container">
-          <NavLink className="nav-link" to="shop">
+        <div className=" d-flex mr-3 align-items-center ">
+          <NavLink className=" mr-5 text-white" to="shop">
             Shop
           </NavLink>
-          <NavLink className="nav-link" to="auth">
+          <NavLink className="mr-5 text-white" to="auth">
             {currentUser ? (
               <span onClick={signOutuser}>Sign Out</span>
             ) : (
@@ -46,10 +44,12 @@ export default function Navigation() {
           <CartDropdown />
         </Suspense>
       )}
-      <div className="page-content">
+      <div className="container">
         <Outlet />
       </div>
-      <footer className="footer">@ copyright Ayush Kumar</footer>
+      <footer className="jumbotron bg-secondary p-2 text-center text-white m-0">
+        @ copyright Ayush Kumar
+      </footer>
     </div>
   );
 }
