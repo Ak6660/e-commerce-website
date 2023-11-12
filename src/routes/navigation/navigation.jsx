@@ -5,9 +5,8 @@ import CartIcon from "../../components/cart-icon/CartIcon";
 import { useCartContext } from "../../contexts/CartDropdownContext";
 import { lazy } from "react";
 import { Suspense } from "react";
-const CartDropdown = lazy(() =>
-  import("../../components/cart-dropdown/CartDropdown")
-);
+
+import CartDropdown from "../../components/cart-dropdown/CartDropdown";
 
 export default function Navigation() {
   const { currentUser } = useUserContext();
@@ -19,8 +18,8 @@ export default function Navigation() {
   };
 
   return (
-    <div>
-      <nav className="jumbotron d-flex align-items-center justify-content-between bg-secondary text-white p-0">
+    <>
+      <nav className="jumbotron sticky-top rounded-0 d-flex align-items-center justify-content-between bg-secondary text-white p-0">
         <NavLink className="ml-3 text-white" to="/">
           <img src="/vite.svg" alt="logo" />
           <span>Mystery Clothing</span>
@@ -39,17 +38,13 @@ export default function Navigation() {
           <CartIcon onClick={handleCartDropdownClick} />
         </div>
       </nav>
-      {isDropdownOpen && (
-        <Suspense fallback={<h1>Loading....</h1>}>
-          <CartDropdown />
-        </Suspense>
-      )}
+      {isDropdownOpen && <CartDropdown />}
       <div className="container">
         <Outlet />
       </div>
-      <footer className="jumbotron bg-secondary p-2 text-center text-white m-0">
+      <footer className="jumbotron sticky-bottom rounded-0 bg-secondary p-0 mt-4 text-center text-white m-0">
         @ copyright Ayush Kumar
       </footer>
-    </div>
+    </>
   );
 }

@@ -1,6 +1,4 @@
 .directory-item-container {
-  min-width: 30%;
-  height: 240px;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
@@ -10,6 +8,9 @@
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0px 0px 15px 0px 10px grey;
+  display: flex;
+  min-width: 300px;
+  height: 240px;
 
   &:hover {
     cursor: pointer;
