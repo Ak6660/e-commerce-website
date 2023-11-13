@@ -1,9 +1,10 @@
 .category-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  // grid-template-columns: repeat(4, 1fr);
+  flex-wrap: wrap;
   column-gap: 20px;
   row-gap: 30px;
-  background-color: rgb(230, 225, 216);
+  background-color: rgb(255, 239, 206);
   padding: 15px 15px;
   border-radius: 8px;
   box-shadow: 0px 0px 5px black;
