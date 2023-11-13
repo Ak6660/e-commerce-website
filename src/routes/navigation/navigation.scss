@@ -1,0 +1,24 @@
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navigation {
+  position: sticky;
+  height: 100%;
+  top: 0;
+  z-index: 99;
+  margin-bottom: 20px;
+  background-color: rgb(97, 95, 95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer {
+  position: sticky;
+  bottom: 0;
+  background-color: rgb(97, 95, 95);
+  display: flex;
+  justify-content: center;
+  color: white;
+}

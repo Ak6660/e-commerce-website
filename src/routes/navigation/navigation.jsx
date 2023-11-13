@@ -3,6 +3,7 @@ import { useUserContext } from "../../contexts/userContext";
 import { signOutuser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/CartIcon";
 import { useCartContext } from "../../contexts/CartDropdownContext";
+import "./navigation.scss";
 
 import CartDropdown from "../../components/cart-dropdown/CartDropdown";
 
@@ -17,7 +18,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="jumbotron sticky-top rounded-0 d-flex align-items-center justify-content-between bg-secondary text-white p-0">
+      <nav className="navigation h-100">
         <NavLink className="ml-3 text-white" to="/">
           <img src="/vite.svg" alt="logo" />
           <span>Mystery Clothing</span>
@@ -40,9 +41,7 @@ export default function Navigation() {
       <div className="container">
         <Outlet />
       </div>
-      <footer className="jumbotron sticky-bottom rounded-0 bg-secondary p-1 mt-4 text-center text-white m-0">
-        @ copyright Ayush Kumar
-      </footer>
+      <footer className="footer">@ copyright Ayush Kumar</footer>
     </>
   );
 }
